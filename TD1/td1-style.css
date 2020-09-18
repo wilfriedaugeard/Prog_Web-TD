@@ -1,0 +1,41 @@
+/* BODY */
+body {
+    color: #343a40;
+}
+
+/* NAVBAR */
+.navbar{
+    padding: 0 5em;
+}
+.navbar-brand{
+    font-size: xx-large;
+    font-style: italic;
+}
+
+
+/* CONTAINER */
+.container {
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
+.pageTitle{
+    text-align: center;
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: 4em;
+    text-transform: capitalize;
+}
+
+/* Article */
+.article{
+    margin: 1em;
+}
+.article h4 {
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.category {
+    margin-bottom: 0.5em;
+}
