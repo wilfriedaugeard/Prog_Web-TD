@@ -84,7 +84,7 @@ function displayGameOverScreen(){
     btn.addEventListener ("click", function() {
         var divsToHide = document.getElementsByClassName("container-fluid"); //divsToHide is an array
         for(var i = 0; i < divsToHide.length; i++){
-            divsToHide[i].style.display = "block"; // depending on what you're doing
+            divsToHide[i].style.display = "block";
         }
         var style = document.createElement('style');
         document.head.appendChild(style);
@@ -92,7 +92,7 @@ function displayGameOverScreen(){
         d.style.display = 'None';
         var cards = document.getElementsByTagName("img");
         for(var i = 0; i < divsToHide.length; i++){
-            cards[i].style.display = "None"; // depending on what you're doing
+            cards[i].remove(); 
         }
         cardsValue  = [];
         cards       = [];
