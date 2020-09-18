@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>BlackJack</title>
+    </head>
+    <body>
+        <div id="mainPage" class="container-fluid">
+            <h1>BlackJack</h1>
+            <p>
+                Votre argent: <span class="myMoney">100</span>
+            </p>
+            <p>Celui de la banque: <span class="bankMoney">100</span></p>
+
+            <h2>Les cartes de la banque</h2>
+            <span id="bankCard">
+                
+            </span>
+            <h2>Vos cartes</h2>
+            <p>Votre score:  
+                <span id="score"></span>
+                <input type="button" value="Nouvelle carte !" onclick="playerTurn()"/>
+            </p>
+        
+            <div>
+                <span id="playerCard">
+                    
+                </span>
+            </div>
+            <script src="blackJack.js"></script>
+        </div>
+    </body>
+</html>
