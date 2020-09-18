@@ -8,18 +8,24 @@
         <div id="mainPage" class="container-fluid">
             <h1>BlackJack</h1>
             <p>
-                Votre argent: <span class="myMoney">100</span>
+                La mise: <span id="blind"></span>
             </p>
-            <p>Celui de la banque: <span class="bankMoney">100</span></p>
+            <p>
+                Votre argent: <span id="myMoney"></span>
+            </p>
+            <p>Celui de la banque: <span id="bankMoney"></span></p>
 
             <h2>Les cartes de la banque</h2>
+            <p>Score de la banque:  
+                <span id="scoreBank"></span>
+            </p>
             <span id="bankCard">
-                
             </span>
             <h2>Vos cartes</h2>
             <p>Votre score:  
                 <span id="score"></span>
                 <input type="button" value="Nouvelle carte !" onclick="playerTurn()"/>
+                <input type="button" value="Arreter là" onclick="bankTurn()"/>
             </p>
         
             <div>
