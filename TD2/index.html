@@ -2,37 +2,54 @@
 <html lang="fr">
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="blackJack.css">
         <title>BlackJack</title>
     </head>
-    <body>
+    <body class="colorBg">
         <div id="mainPage" class="container-fluid">
-            <h1>BlackJack</h1>
-            <p>
-                La mise: <span id="blind"></span>
-            </p>
-            <p>
-                Votre argent: <span id="myMoney"></span>
-            </p>
-            <p>Celui de la banque: <span id="bankMoney"></span></p>
-
-            <h2>Les cartes de la banque</h2>
-            <p>Score de la banque:  
-                <span id="scoreBank"></span>
-            </p>
-            <span id="bankCard">
-            </span>
-            <h2>Vos cartes</h2>
-            <p>Votre score:  
-                <span id="score"></span>
-                <input type="button" value="Nouvelle carte !" onclick="playerTurn()"/>
-                <input type="button" value="Arreter là" onclick="bankTurn()"/>
-            </p>
-        
-            <div>
-                <span id="playerCard">
-                    
-                </span>
+            <div class="centered">
+                <h1>BlackJack</h1>
             </div>
+            <div class="centered infoParty shadowCard">   
+                <p class="">
+                    La mise: <span class="money" id="blind"></span>
+                </p>
+                <p class="">
+                    Votre argent: <span class="money" id="myMoney"></span> €
+                </p>
+                <p class="">Celui de la banque: <span class="money" id="bankMoney"></span> €</p>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="centered cardSection col-md">
+                        <h1 class="mediumText">Les cartes de la banque</h1>
+                        <p>Score de la banque:  
+                            <span id="scoreBank"></span>
+                        </p>
+                        <span id="bankCard">
+                        </span>
+                    </div>
+                    <div class="centered cardSection col-md">
+                        <h1 class="mediumText">Vos cartes</h1>
+                        <p>Votre score:  
+                            <span id="score"></span>
+                        </p>
+                    
+                        <div>
+                            <span id="playerCard">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="centered">
+                    <input type="button" class="btn btn-info" value="Nouvelle carte !" onclick="playerTurn()"/>
+                    <input type="button" class="btn btn-success" value="Arreter là" onclick="bankTurn()"/>
+                </div>
+            </div>
+            
+            
+           
             <script src="blackJack.js"></script>
         </div>
     </body>

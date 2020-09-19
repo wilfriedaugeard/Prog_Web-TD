@@ -1,0 +1,84 @@
+.colorBg {
+    background: rgb(207,197,169);
+    background: linear-gradient(90deg, rgba(207,197,169,1) 0%, rgba(226,220,205,0.9360119047619048) 45%, rgba(200,200,200,1) 100%);
+}
+.centered{
+    text-align: center;
+}
+
+body{
+    color: #666;
+}
+
+h1{
+    background: url(http://ecard.enter-media.org/upload/iblock/cf4/cf401a38b3c0190e91e68729a24795b6.jpg) repeat;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-position: 50% 50%;
+    position: relative;
+    line-height:normal;
+    font-size:10rem;
+ 
+}
+
+h1:after {
+    content: attr(data-text);
+    position: absolute;
+    text-shadow:4px 4px 0px #FFF, 
+    7px 7px 0px #877667;left: 0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    z-index: -1;
+    line-height:normal;
+    font-size:12rem;
+}
+
+.mediumText {
+    font-size: 3rem;
+}
+
+.centered > p {
+    font-weight: bold;
+}
+
+.cardSection {
+    margin: 2em;
+}
+
+img {
+    margin: 1em 0.5em;
+}
+
+.money {
+    font-style: italic;
+}
+
+.infoParty{
+    border: 2px solid grey;
+    border-style: double;
+    margin: 0 40%;
+    padding: 1em 0;
+    border-radius: 15px;
+}
+
+.shadowCard:hover {
+    box-shadow: 5px 5px 5px -1px;
+    background-color: rgba(235,229,218,0.5);
+    border-radius: 15px;
+    padding: 1em;
+    transition: all 0.5s;
+}
+.shadowCard{
+    transition: all 0.5s;
+}
+
+.greenColor{
+    color: green;
+}
+.orangeColor{
+    color: orange;
+}
+.redColor{
+    color: orangered;
+}

@@ -88,13 +88,19 @@ function displayEndScreen(message){
     t.innerHTML = "Your score: "+valuePlayer+" | Bank score: "+valueBank;
     d.appendChild(h);
     d.appendChild(t);
+    d.className = "centered";
 
     // Create Button
     var btn = document.createElement("input");
     btn.type = "button";
     btn.value = "Replay";
+    btn.className = "btn btn-success";
+    if(myMoney-blind <=0){
+        btn.value = "No Money ! Start a party";
+    }
     d.appendChild(btn);
     document.body.appendChild(d);
+    
 
     btn.addEventListener ("click", function() {
         var divsToHide = document.getElementsByClassName("container-fluid");
@@ -103,7 +109,6 @@ function displayEndScreen(message){
         }
         var style = document.createElement('style');
         document.head.appendChild(style);
-        style.sheet.insertRule('body {background-color: white;}');
         d.style.display = 'None';
         var cards = document.getElementsByTagName("img");
         for(var i = 0; i < divsToHide.length; i++){
@@ -120,13 +125,21 @@ function displayEndScreen(message){
         message == "Winner !" ? finalBlind += blind : finalBlind -= blind;
         myMoney     += finalBlind; 
         bankMoney   -= finalBlind;
+        if(myMoney <=0){
+            myMoney = 100;
+            bankMoney = 100;
+        }
         document.getElementById("blindInput").readOnly = false;
+        document.getElementById("blindInput").max = myMoney;
+        document.getElementById("blindInput").value = 10;
         initGame();
+        
 
     });
     // Display bank card
     t = document.createElement("p");
     t.innerHTML = "BANK CARDS";
+    t.className = "mediumText";
     d.appendChild(t);
     for(var i=0; i<bankList.length; i++){
         d.appendChild(bankList[i]); 
@@ -134,6 +147,7 @@ function displayEndScreen(message){
     // Display player card
     t2 = document.createElement("p");
     t2.innerHTML = "PLAYER CARDS";
+    t2.className = "mediumText";
     d.appendChild(t2);
     for(var i=0; i<cardList.length; i++){
         d.appendChild(cardList[i]); 
@@ -161,9 +175,26 @@ function createNumInput(){
     spanBlind.appendChild(input);
 }
 
+
+function addColorMoney(id, money){
+    var color = "greenColor";
+    if(money < 50){
+        color = "redColor";
+    }else{
+        if(money < 100){
+            color = "orangeColor";
+        }
+    }
+    document.getElementById(id).className = color;
+}
+
+
 function initMoney(){
     document.getElementById('myMoney').innerHTML    = myMoney;
     document.getElementById('bankMoney').innerHTML  = bankMoney;
+    addColorMoney('myMoney', myMoney);
+    addColorMoney('bankMoney', bankMoney);
+
 }
 
 function initGame(){
