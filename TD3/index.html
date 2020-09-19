@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="meteo.css">
+        <title>Application météo</title>
+        <script src="weather.js" defer></script>
+    </head>
+    <body>
+        <div id="mainPage">
+            <header>
+                <h1 class="display-3 text-center">
+                    Application M&eacute;t&eacute;o
+                </h1>
+            </header>
+            <div class="container">
+                <div id="menu" class="row">
+                    <div class="col input-group">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Entrer le nom d'une ville" id="inputCity">
+                            <div class="input-group-append">
+                                <button class="btn btn-success" type="submit" onclick="sendMeteoRequest()">Afficher</button>  
+                            </div>
+                        </div>
+                        <div id="data">
+                            <div id="cityName"></div>
+                            <div id="currentInfo">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div id="todayName"></div>
+                                        <div id="hourName"></div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <span id="currentDeg"></span>
+                                        <span id="symbDeg">°C</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="weatherCard">
+                                            <div id="imgWeather"></div>
+                                            <div id="conditionName"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col tmp">
+                                        <span id="minTmp"></span>
+                                        <span id="maxTmp"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col tmp">
+                                        <span id="wind"></span>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

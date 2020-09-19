@@ -1,0 +1,51 @@
+body {
+    background-image: url("assets/cloud.jpg");
+    color: white;
+}  
+
+#menu{
+    margin: 3em auto;
+}
+
+#cityName{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#data {
+    margin: 1em auto;
+    text-align: center;
+}
+
+#currentInfo {
+    display: none;
+    background-color: rgba(152,216,240,0.3);
+    box-shadow: 5px 5px 1px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 1em 2em;
+}
+#conditionName, #todayName, .tmp, #symbDeg{
+    font-size: small;
+}
+#hourName{
+    font-size: x-large;
+}
+#conditionName{
+    font-style: italic;
+}
+#todayName{
+    font-weight: bold;
+}
+
+#currentDeg{
+    font-size: 3.5rem;
+}
+#symbDeg{
+    position: absolute;
+    top: 1rem;
+}
+
+.tmp {
+    font-weight: bold;
+    text-align: left;
+}
