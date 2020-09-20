@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <link rel="stylesheet" href="meteo.css">
         <title>Application météo</title>
         <script src="weather.js" defer></script>
@@ -26,35 +27,48 @@
                             </div>
                         </div>
                         <div id="data">
-                            <div id="cityName"></div>
+                            <div>
+                                <div id="city">
+                                    <i class="fa fa-map-marker"></i>
+                                    <span id="cityName"></span>
+                                </div>
+                            </div>
                             <div id="currentInfo">
+    
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div id="todayName"></div>
-                                        <div id="hourName"></div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="vertical-center">
+                                                    <div id="todayName"></div>
+                                                    <div id="hourName"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span id="currentDeg"></span>
+                                                <span id="symbDeg">°C</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 tmp">
+                                                <span id="minTmp"></span>
+                                                <span id="maxTmp"></span>
+                                            </div>
+                                            <div class="col-md-6 tmp">
+                                                <span id="wind"></span>
+                                                <span id="windDir"></span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <span id="currentDeg"></span>
-                                        <span id="symbDeg">°C</span>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="weatherCard">
+                                    <div class="col-md-4 itemInfo">
+                                        <div class="weatherCard vertical-center">
                                             <div id="imgWeather"></div>
                                             <div id="conditionName"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col tmp">
-                                        <span id="minTmp"></span>
-                                        <span id="maxTmp"></span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col tmp">
-                                        <span id="wind"></span>
-                                    </div>
-                                </div>
+                                
                             </div> 
                         </div>
                     </div>
