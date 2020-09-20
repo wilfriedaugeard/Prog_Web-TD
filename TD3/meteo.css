@@ -3,12 +3,13 @@ body {
     color: white;
 }  
 
+/* Input */
 #menu{
     margin: 3em auto;
     padding: 0 20%;
 }
 
-
+/* Data section */
 #data {
     margin: 1em auto;
     text-align: center;
@@ -17,34 +18,30 @@ body {
 }
 
 
-
-#conditionName, #todayName, .tmp, #symbDeg{
+#conditionName, #todayName, .tmp, #symbDeg, .small{
     font-size: small;
 }
-
+/* City info */ 
 #city{
     text-align: center;
     text-transform: uppercase;
     font-size: large;
     margin-bottom: 1em;
 }
-
-#currentInfo {
-    background-color: rgba(152,216,240,0.3);
+/* Today weather */
+#currentInfo, #weekInfo {
     box-shadow: 5px 5px 1px rgba(0,0,0,0.1);
     border-radius: 10px;
     padding: 1em 2em;
 }
-
+#currentInfo{
+    background-color: rgba(152,216,240,0.3);
+}
 #hourName{
     font-size: x-large;
 }
 #todayName{
     font-weight: bold;
-}
-.tmp {
-    font-weight: bold;
-    text-align: left;
 }
 
 #currentDeg{
@@ -63,16 +60,46 @@ body {
     max-width: 100%;
 }
 
+.tmp {
+    font-weight: bold;
+    text-align: left;
+}
 
+
+
+/* Week weather */
+#weekInfo {
+    background-color: rgba(152,216,240,0.6);
+    margin-top: 1em;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+#carousselDiv{
+    margin: 0;
+    padding: 1em 3em 3em 3em;
+}
+
+
+/* Useful */
+.bold {
+    font-weight: bold;
+}
 .vertical-center {
     margin: 0;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+ #map {
+    height: 100%;
   }
 
-
+/* Small screen */
 @media screen and (max-width: 990px) {
     #menu{
         margin: 2em auto;

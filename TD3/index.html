@@ -2,13 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <link rel="stylesheet" href="meteo.css">
         <title>Application météo</title>
         <script src="weather.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div id="mainPage">
@@ -18,15 +21,57 @@
                 </h1>
             </header>
             <div class="container">
-                <div id="menu" class="row">
+                <div id="menu">
                     <div class="col input-group">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Entrer le nom d'une ville" id="inputCity">
+                            <input type="text" class="form-control" placeholder="Ex: Paris" id="inputCity">
                             <div class="input-group-append">
-                                <button class="btn btn-success" type="submit" onclick="sendMeteoRequest()">Afficher</button>  
+                                <button class="btn btn-info" type="submit" onclick="sendMeteoRequest()">Afficher <i class="fa fa-cloud"></i></button>  
                             </div>
                         </div>
-                        <div id="data">
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="mapDiv" class="col-md-12">
+                        <div id="map" style="width:100%;height:420px;"></div>
+                        <script>
+                            let map;
+                            let savedMarker;
+                            function initMap() {
+                                let myLatlng = {lat: 46.524542279877316, lng: 2.4557739321143313};
+                            
+                                map = new google.maps.Map(
+                                    document.getElementById('map'), {zoom: 5, center: myLatlng});
+                            
+                                google.maps.event.addListener(map, 'click', function(event) {
+                                    placeMarker(map, event.latLng);
+                                });
+                            
+                                
+                            
+                            }
+                            function placeMarker(map, location) {
+                                    if(savedMarker != null){
+                                        setMapOnAll(null);
+                                    }
+                                    let marker = new google.maps.Marker({
+                                        position: location,
+                                        map: map
+                                    });
+                                    savedMarker = marker;
+                                    const data = "lat="+location.lat()+"lng="+location.lng();
+                                    sendData(data);
+                                }
+                            
+                                function setMapOnAll(map) {
+                                    savedMarker.setMap(map);
+                                }
+                        </script>
+                        <script
+                            src="https://maps.googleapis.com/maps/api/js?key=YOUR_TOKEN_HERE&callback=initMap"></script>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row" id="data">
                             <div>
                                 <div id="city">
                                     <i class="fa fa-map-marker"></i>
@@ -34,7 +79,6 @@
                                 </div>
                             </div>
                             <div id="currentInfo">
-    
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="row">
@@ -49,11 +93,10 @@
                                                 <span id="symbDeg">°C</span>
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="col-md-6 tmp">
-                                                <span id="minTmp"></span>
-                                                <span id="maxTmp"></span>
+                                                <i class="fa fa-thermometer-half"></i><span id="minTmp"></span></br>
+                                                <i class="fa fa-thermometer-half"></i><span id="maxTmp"></span>
                                             </div>
                                             <div class="col-md-6 tmp">
                                                 <span id="wind"></span>
@@ -68,12 +111,95 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                            </div> 
+                            </div>
+                            <div id="weekInfo">
+                                <div id="carousselDiv" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ul class="carousel-indicators">
+                                        <li data-target="#carousselDiv" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carousselDiv" data-slide-to="1"></li>
+                                    </ul>
+                                    <!-- The slideshow -->
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="dayInfo bold">
+                                                        <span id="dayName_0"></span>
+                                                    </div>
+                                                    <div class="dayInfo small">
+                                                        <span id="dateName_0"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div id="imgWeather_0"></div>
+                                                        <div id="minMaxTmp_0" class="small bold"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="dayInfo bold">
+                                                        <span id="dayName_1"></span>
+                                                    </div>
+                                                    <div class="dayInfo small">
+                                                        <span id="dateName_1"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div id="imgWeather_1"></div>
+                                                        <div id="minMaxTmp_1" class="small bold"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="dayInfo bold">
+                                                        <span id="dayName_2"></span>
+                                                    </div>
+                                                    <div class="dayInfo small">
+                                                        <span id="dateName_2"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div id="imgWeather_2"></div>
+                                                        <div id="minMaxTmp_2" class="small bold"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="dayInfo bold">
+                                                        <span id="dayName_3"></span>
+                                                    </div>
+                                                    <div class="dayInfo small">
+                                                        <span id="dateName_3"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div id="imgWeather_3"></div>
+                                                        <div id="minMaxTmp_3" class="small bold"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="dayInfo bold">
+                                                        <span id="dayName_4"></span>
+                                                    </div>
+                                                    <div class="dayInfo small">
+                                                        <span id="dateName_4"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div id="imgWeather_4"></div>
+                                                        <div id="minMaxTmp_4" class="small bold"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Left and right controls -->
+                                    <a class="carousel-control-prev" href="#carousselDiv" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carousselDiv" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="">
-                        <div id="map"></div>
                     </div>
                 </div>
             </div>
