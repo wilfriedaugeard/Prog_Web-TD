@@ -14,6 +14,11 @@ Make a simple BlackJack game in JavaScript
 
 ![td2](https://github.com/wilfriedaugeard/Prog_Web-TD/blob/master/assets/td2.gif)
 
+## TD-3
+Make a meteo application in JavaScript using meteo-previsions's API
+
+![td3](https://github.com/wilfriedaugeard/Prog_Web-TD/blob/master/assets/td3.gif)
+
 
 ### Contributors
 <a href="https://github.com/wilfriedaugeard/Prog_Web-TD/graphs/contributors">
