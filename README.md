@@ -4,18 +4,18 @@
 Web programming course from the University of Bordeaux.
 
 ## TD-1
-Make a static blog in HTML/CSS
+Make a static blog in HTML/CSS + Bootstrap
 
 ![td1](https://github.com/wilfriedaugeard/Prog_Web-TD/blob/master/assets/td1.gif)
 
 
 ## TD-2
-Make a simple BlackJack game in JavaScript
+Make a simple BlackJack game in JavaScript + Bootstrap.
 
 ![td2](https://github.com/wilfriedaugeard/Prog_Web-TD/blob/master/assets/td2.gif)
 
 ## TD-3
-Make a meteo application in JavaScript using meteo-previsions's API
+Make a meteo application in JavaScript using meteo-previsions's API + Bootstrap + Google Map API.
 
 ![td3](https://github.com/wilfriedaugeard/Prog_Web-TD/blob/master/assets/td3.gif)
 
