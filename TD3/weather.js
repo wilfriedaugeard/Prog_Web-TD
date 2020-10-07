@@ -31,6 +31,7 @@ function sendData(requestData){
         getCityName();
         displayTodayWeather();
         displayWeekWeather();
+        loadHoursData();
     }
 }
 
@@ -47,7 +48,6 @@ function sendMeteoRequest(){
         return;
     }
     sendData(cityValue);
-    
 }
 
 // Get the city name and display it
@@ -137,5 +137,44 @@ function displayTodayWeather(){
 
 
 
+let map;
+let savedMarker;
+function initMap() {
+    let myLatlng = {lat: 46.524542279877316, lng: 2.4557739321143313};
+        map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 5, center: myLatlng});
+            google.maps.event.addListener(map, 'click', function(event) {
+            placeMarker(map, event.latLng);
+        });
+}
+function placeMarker(map, location) {
+    if(savedMarker != null){
+        setMapOnAll(null);
+    }
+    let marker = new google.maps.Marker({
+        position: location,
+        map: map
+    });
+    savedMarker = marker;
+    const data = "lat="+location.lat()+"lng="+location.lng();
+    sendData(data);
+}
+function setMapOnAll(map) {
+    savedMarker.setMap(map);
+}
+
+
+function loadFirstRawHours(){
+    document.querySelector('#firstHourRaw').innerHTML = data.fcst_day_0.hourly_data["0H00"].CONDITION_KEY;
+    for (const property in data.fcst_day_0.hourly_data) {
+        console.log(data.fcst_day_0.hourly_data[property]);
+      }
+      
+}
+
+
+function loadHoursData(){
+    loadFirstRawHours();
+}
 
 

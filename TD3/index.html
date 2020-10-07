@@ -12,6 +12,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=yourTokenHere&callback=initMap" defer></script>
     </head>
     <body>
         <div id="mainPage">
@@ -34,34 +35,6 @@
                 <div class="row">
                     <div id="mapDiv" class="col-md-12">
                         <div id="map" style="width:100%;height:420px;"></div>
-                        <script>
-                            let map;
-                            let savedMarker;
-                            function initMap() {
-                                let myLatlng = {lat: 46.524542279877316, lng: 2.4557739321143313};
-                                map = new google.maps.Map(
-                                    document.getElementById('map'), {zoom: 5, center: myLatlng});
-                                google.maps.event.addListener(map, 'click', function(event) {
-                                    placeMarker(map, event.latLng);
-                                });
-                            }
-                            function placeMarker(map, location) {
-                                    if(savedMarker != null){
-                                        setMapOnAll(null);
-                                    }
-                                    let marker = new google.maps.Marker({
-                                        position: location,
-                                        map: map
-                                    });
-                                    savedMarker = marker;
-                                    const data = "lat="+location.lat()+"lng="+location.lng();
-                                    sendData(data);
-                                }
-                                function setMapOnAll(map) {
-                                    savedMarker.setMap(map);
-                                }
-                        </script>
-                        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_TOKEN_HERE&callback=initMap"></script>
                     </div>
                     <div class="col-md-6">
                         <div class="row" id="data">
@@ -192,6 +165,19 @@
                                     </a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin: 2em 0;">
+                    <div class="row" id="firstHourRaw" style="background-color: green; width: 100%;">
+                        <div class="col-md">
+                            <div id="imgHours"></div>
+                            <p>premiere H</p>
+                        </div>
+                    </div>
+                    <div class="row" style="background-color: aqua; width: 100%;">
+                        <div class="col-md">
+                            <p>2eme heure</p>
                         </div>
                     </div>
                 </div>
