@@ -1,9 +1,47 @@
-let requestURL = "https://www.prevision-meteo.ch/services/json/";
+//let requestURL = "https://www.prevision-meteo.ch/services/json/";
 const request = new XMLHttpRequest();
-let data = null;
+//let data = null;
+
+function getInputValue() {
+    document.getElementById("submitBtn").addEventListener("click", function() {
+        sendMeteoRequest();
+      });
+}
+
+
+/*
+function sendData(requestData){
+    reduiceMap();
+    data = fetch(requestURL.concat(requestData))
+    .then(data => data.json())
+	.then(data => displayData())
+	.catch(err => console.log(err));
+}*/
+
+function displayData(){
+    console.log(data);
+    if(savedMarker != null){
+        setMapOnAll(null);
+    }
+    var myLatLng = {lat: parseFloat(data.city_info.latitude), lng: parseFloat(data.city_info.longitude)};
+    let newMarker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+    });
+    savedMarker = newMarker;
+    newMarker.setMap(map);
+
+
+    document.getElementById('data').style.display = "block";
+    getCityName();
+    displayTodayWeather();
+    displayWeekWeather();
+    loadHoursData();
+}
 
 
 // Send the request to API
+/*
 function sendData(requestData){
     reduiceMap();
     request.open('GET', requestURL.concat(requestData));
@@ -33,22 +71,7 @@ function sendData(requestData){
         displayWeekWeather();
         loadHoursData();
     }
-}
-
-// Reduice the map size
-function reduiceMap(){
-    document.getElementById('mapDiv').className = "col-md-6";
-}
-
-// Check input and send data to request function
-function sendMeteoRequest(){
-    const cityValue = document.getElementById('inputCity').value;
-    if(cityValue == "" || cityValue == null){
-        document.getElementById("cityName").innerHTML = "Please enter a city name";
-        return;
-    }
-    sendData(cityValue);
-}
+}*/
 
 // Get the city name and display it
 function getCityName(){
@@ -137,31 +160,7 @@ function displayTodayWeather(){
 
 
 
-let map;
-let savedMarker;
-function initMap() {
-    let myLatlng = {lat: 46.524542279877316, lng: 2.4557739321143313};
-        map = new google.maps.Map(
-            document.getElementById('map'), {zoom: 5, center: myLatlng});
-            google.maps.event.addListener(map, 'click', function(event) {
-            placeMarker(map, event.latLng);
-        });
-}
-function placeMarker(map, location) {
-    if(savedMarker != null){
-        setMapOnAll(null);
-    }
-    let marker = new google.maps.Marker({
-        position: location,
-        map: map
-    });
-    savedMarker = marker;
-    const data = "lat="+location.lat()+"lng="+location.lng();
-    sendData(data);
-}
-function setMapOnAll(map) {
-    savedMarker.setMap(map);
-}
+
 
 
 function loadFirstRawHours(){
@@ -178,3 +177,4 @@ function loadHoursData(){
 }
 
 
+getInputValue();

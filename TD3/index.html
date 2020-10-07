@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <link rel="stylesheet" href="meteo.css">
         <title>Application météo</title>
+        <script src="map.js" defer></script>
         <script src="weather.js" defer></script>
+        <script src="request.js" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -23,14 +25,20 @@
             </header>
             <div class="container">
                 <div id="menu">
-                    <div class="col input-group">
+                    <div id="group_input" class="col input-group">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Ex: Paris" id="inputCity">
                             <div class="input-group-append">
-                                <button class="btn btn-info" type="submit" onclick="sendMeteoRequest()">Afficher <i class="fa fa-cloud"></i></button>  
+                                <button class="btn btn-info" id="submitBtn">Afficher <i class="fa fa-cloud"></i></button>  
                             </div>
                         </div>
+                        <div id="invalidInputNameDiv" class="hidden alert alert-warning alert-dismissible" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            Please enter a valid city name or pick the map
+                        </div>
                     </div>
+
+                   
                 </div>
                 <div class="row">
                     <div id="mapDiv" class="col-md-12">

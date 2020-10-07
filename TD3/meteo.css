@@ -93,6 +93,15 @@ body {
 }
 
 
+.hidden{
+    display: none;
+}
+
+.block{
+    display: block;
+}
+
+
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
  #map {
