@@ -40,7 +40,7 @@ class App {
         this.displayCityName();
         this.displayTodayWeather();
         this.displayWeekWeather();
-        //loadHoursData();
+        this.loadHoursData();
     }
 
     displayCityName(){
@@ -82,6 +82,54 @@ class App {
             img.src   = this.weather.getDayIconSmall(numDay);
             document.getElementById(imgWeather).appendChild(img); 
         }
+    }
+
+    displayHourWeather(h, mainDiv){
+       
+
+        const divWeather = document.createElement('div');
+        divWeather.className="col bold";
+
+        const img = document.createElement('img'); 
+        img.src   = this.weather.getIconSmallByHour(0, h);
+
+        divWeather.appendChild(img); 
+
+        const hourText = document.createElement('span');
+        hourText.innerHTML = h+"H00";
+        divWeather.appendChild(hourText);
+
+
+        mainDiv.appendChild(divWeather);
+
+    }
+
+
+    loadFirstRawHours(){
+        const node1 = document.getElementById("firstHourRaw");
+        if(node1.childElementCount != 0){
+            while (node1.firstChild) {
+                node1.removeChild(node1.lastChild);
+              }
+        }
+        //data.fcst_day_0.hourly_data["0H00"].CONDITION_KEY;
+        for (let i=0; i<12; i++) {
+            this.displayHourWeather(i, node1);
+        }
+        const node2 = document.getElementById("secondHourRaw");
+        if(node2.childElementCount != 0){
+            while (node2.firstChild) {
+                node2.removeChild(node2.lastChild);
+              }
+        }
+        for (let i=12; i<24; i++) {
+            this.displayHourWeather(i, node2);
+        }
+          
+    }
+    
+    loadHoursData(){
+        this.loadFirstRawHours();
     }
 }
 

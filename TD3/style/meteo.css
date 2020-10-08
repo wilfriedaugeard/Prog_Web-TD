@@ -29,7 +29,7 @@ body {
     margin-bottom: 1em;
 }
 /* Today weather */
-#currentInfo, #weekInfo {
+#currentInfo, #weekInfo, #displayHours{
     box-shadow: 5px 5px 1px rgba(0,0,0,0.1);
     border-radius: 10px;
     padding: 1em 2em;
@@ -68,7 +68,7 @@ body {
 
 
 /* Week weather */
-#weekInfo {
+#weekInfo, #displayHours {
     background-color: rgba(152,216,240,0.6);
     margin-top: 1em;
     padding-top: 0;

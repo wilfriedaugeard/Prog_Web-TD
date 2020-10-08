@@ -4,6 +4,7 @@ class Data {
     }
 
     createFcst_day(n){return "fcst_day_"+n;}
+    createHour(n){return n+"H00";}
 
     getCityName(){return this.data.city_info.name;}
     getCountryName(){return this.data.city_info.country;}
@@ -48,20 +49,10 @@ class Data {
     getDayLongName(day){return this.data[this.createFcst_day(day)].day_long;};
     getDayDate(day){return this.data[this.createFcst_day(day)].date;};
     getDayIconSmall(day){return this.data[this.createFcst_day(day)].icon;};
+
+    getIconSmallByHour(day, hour){return this.data[this.createFcst_day(day)].hourly_data[this.createHour(hour)].ICON;}
     
 }
 
 
 
-function loadFirstRawHours(){
-    document.querySelector('#firstHourRaw').innerHTML = data.fcst_day_0.hourly_data["0H00"].CONDITION_KEY;
-    for (const property in data.fcst_day_0.hourly_data) {
-        console.log(data.fcst_day_0.hourly_data[property]);
-    }
-      
-}
-
-
-function loadHoursData(){
-    loadFirstRawHours();
-}
