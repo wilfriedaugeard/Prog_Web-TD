@@ -3,8 +3,13 @@ class Data {
         this.data = json;
     }
 
+    createFcst_day(n){return "fcst_day_"+n;}
+
     getCityName(){return this.data.city_info.name;}
     getCountryName(){return this.data.city_info.country;}
+    getCityLatitude(){return this.data.city_info.latitude;}
+    getCityLongitude(){return this.data.city_info.longitude;}
+
     getCurrentDay(){return this.data.current_condition.date;}
     getCurrentHour(){return this.data.current_condition.hour;}
     getCurrentBigIcon(){return this.data.current_condition.icon_big;}
@@ -12,155 +17,39 @@ class Data {
     getCurrentTmp(){return this.data.current_condition.tmp;}
     getCurrentWindSpeed(){return this.data.current_condition.wnd_spd;}
 
-}
-
-
-
-
-// function getInputValue() {
-//     document.getElementById("submitBtn").addEventListener("click", function() {
-//         sendMeteoRequest();
-//       });
-// }
-
-// function displayData(){
-//     if(savedMarker != null){
-//         setMapOnAll(null);
-//     }
-//     let myLatLng = {lat: parseFloat(data.city_info.latitude), lng: parseFloat(data.city_info.longitude)};
-//     let newMarker = new google.maps.Marker({
-//         position: myLatLng,
-//         map: map,
-//     });
-//     savedMarker = newMarker;
-//     newMarker.setMap(map);
-
-
-//     document.getElementById('data').style.display = "block";
-//     getCityName();
-//     displayTodayWeather();
-//     displayWeekWeather();
-//     loadHoursData();
-// }
-
-
-// Send the request to API
-/*
-function sendData(requestData){
-    reduiceMap();
-    request.open('GET', requestURL.concat(requestData));
-    request.responseType = 'json';
-    request.send();
-
-    request.onload = function() {
-        const jsonObj = request.response;
-        const strObj = JSON.stringify(jsonObj);
-        data = JSON.parse(strObj);
-
-        if(savedMarker != null){
-            setMapOnAll(null);
+    getWindDirection(){
+        const dir = this.data.current_condition.wnd_dir;
+        switch(dir){
+            case 'N':
+                return "Nord";
+            case 'E':
+                return "Est";
+            case 'O':
+                return "Ouest";
+            case 'S':
+                return "Sud";
+            case 'NE':
+               return "Nord-Est";
+            case 'NO':
+                return "Nord-Ouest";
+            case 'SE':
+                return "Sud-Est";
+            case 'SO':
+                return "Sud-Ouest";
+            default:
+                return "Inconnu";
         }
-        var myLatLng = {lat: parseFloat(data.city_info.latitude), lng: parseFloat(data.city_info.longitude)};
-        let newMarker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-        });
-        savedMarker = newMarker;
-        newMarker.setMap(map);
-
-
-        document.getElementById('data').style.display = "block";
-        getCityName();
-        displayTodayWeather();
-        displayWeekWeather();
-        loadHoursData();
     }
-}*/
 
-// Get the city name and display it
-// function getCityName(){
-//     document.getElementById('cityName').innerHTML = data.city_info.name+", "+data.city_info.country;
-// }
+    getTmpMin(day){return this.data[this.createFcst_day(day)].tmin;}
+    getTmpMax(day){return this.data[this.createFcst_day(day)].tmax;}
+    
 
-// Get wind direction and display long name
-function getWindDirection(){
-    const dir = data.current_condition.wnd_dir;
-    let fullDir = "";
-    switch(dir){
-        case 'N':
-            fullDir = "Nord";
-            break;
-        case 'E':
-            fullDir = "Est"
-            break;
-        case 'O':
-            fullDir = "Ouest";
-            break;
-        case 'S':
-            fullDir = "Sud";
-            break;
-        case 'NE':
-            fullDir = "Nord-Est";
-            break;
-        case 'NO':
-            fullDir = "Nord-Ouest";
-            break;
-        case 'SE':
-            fullDir = "Sud-Est";
-            break;
-        case 'SO':
-            fullDir = "Sud-Ouest";
-            break;
-        default:
-            fullDir = "Inconnu";
-    }
-    document.getElementById('windDir').innerHTML = "direction: "+fullDir;
+    getDayLongName(day){return this.data[this.createFcst_day(day)].day_long;};
+    getDayDate(day){return this.data[this.createFcst_day(day)].date;};
+    getDayIconSmall(day){return this.data[this.createFcst_day(day)].icon;};
+    
 }
-
-// Get the weather of a day and display it
-function getDayWeather(numDay, jsonField){
-    const dayName    = "dayName_"+numDay;
-    const dateName   = "dateName_"+numDay;
-    const imgWeather = "imgWeather_"+numDay;
-    const minMaxTmp  = "minMaxTmp_"+numDay;
-
-    document.getElementById(dayName).innerHTML   = jsonField.day_long;
-    document.getElementById(dateName).innerHTML  = jsonField.date;
-    document.getElementById(minMaxTmp).innerHTML = jsonField.tmin+"° - "+jsonField.tmax+"°";
-
-    if(document.getElementById(imgWeather).childElementCount == 0){
-        const img = document.createElement('img'); 
-        img.src   = jsonField.icon;
-        document.getElementById(imgWeather).appendChild(img); 
-    }
-}
-
-// Display week weather
-function displayWeekWeather(){
-    getDayWeather(0, data.fcst_day_0);
-    getDayWeather(1, data.fcst_day_1);
-    getDayWeather(2, data.fcst_day_2);
-    getDayWeather(3, data.fcst_day_3);
-    getDayWeather(4, data.fcst_day_4);
-}
-
-// Display today weather
-// function displayTodayWeather(){
-//     document.getElementById('todayName').innerHTML  = data.current_condition.date
-//     document.getElementById('hourName').innerHTML   = data.current_condition.hour;
-//     if(document.getElementById('imgWeather').childElementCount == 0){
-//         const img   = document.createElement('img'); 
-//         img.src     =  data.current_condition.icon_big;
-//         document.getElementById('imgWeather').appendChild(img); 
-//     }
-//     document.getElementById('conditionName').innerHTML  = data.current_condition.condition;
-//     document.getElementById('currentDeg').innerHTML     = data.current_condition.tmp;
-//     document.getElementById('minTmp').innerHTML         = " min: "+data.fcst_day_0.tmin+"°";
-//     document.getElementById('maxTmp').innerHTML         = " max: "+data.fcst_day_0.tmax+"°";
-//     document.getElementById('wind').innerHTML           = "vent: "+data.current_condition.wnd_spd+"km/h";
-//     getWindDirection();
-// }
-
 
 
 
@@ -176,6 +65,3 @@ function loadFirstRawHours(){
 function loadHoursData(){
     loadFirstRawHours();
 }
-
-
-//getInputValue();

@@ -29,25 +29,17 @@ class App {
 
     validData(){
         this.weather = new Data(this.data);
+        console.log(this.weather);
+        this.map.placeMarkerLatLgn(this.weather.getCityLatitude(), this.weather.getCityLongitude());
         this.reduiceMap();
         this.displayData();
     }
 
     displayData(){
-        // if(savedMarker != null){
-        //     setMapOnAll(null);
-        // }
-        // let myLatLng = {lat: parseFloat(data.city_info.latitude), lng: parseFloat(data.city_info.longitude)};
-        // let newMarker = new google.maps.Marker({
-        //     position: myLatLng,
-        //     map: map,
-        // });
-        // savedMarker = newMarker;
-        // newMarker.setMap(map);
         this.showDataVisibility();
         this.displayCityName();
         this.displayTodayWeather();
-        //displayWeekWeather();
+        this.displayWeekWeather();
         //loadHoursData();
     }
 
@@ -64,19 +56,43 @@ class App {
         }
         document.getElementById('conditionName').innerHTML  = this.weather.getCurrentConditionName();
         document.getElementById('currentDeg').innerHTML     = this.weather.getCurrentTmp();
-        //document.getElementById('minTmp').innerHTML         = " min: "+data.fcst_day_0.tmin+"°";
-        //document.getElementById('maxTmp').innerHTML         = " max: "+data.fcst_day_0.tmax+"°";
+        document.getElementById('minTmp').innerHTML         = " min: "+this.weather.getTmpMin(0)+"°";
+        document.getElementById('maxTmp').innerHTML         = " max: "+this.weather.getTmpMax(0)+"°";
         document.getElementById('wind').innerHTML           = "vent: "+this.weather.getCurrentWindSpeed()+"km/h";
-        getWindDirection();
+        document.getElementById('windDir').innerHTML        = this.weather.getWindDirection();
+    }
+
+    displayWeekWeather(){
+        for(let i = 0; i<5; i++){
+            this.displayDayWeather(i);
+        }
+    }
+
+    displayDayWeather(numDay){
+        const dayName    = "dayName_"+numDay;
+        const dateName   = "dateName_"+numDay;
+        const imgWeather = "imgWeather_"+numDay;
+        const minMaxTmp  = "minMaxTmp_"+numDay;
+        document.getElementById(dayName).innerHTML   = this.weather.getDayLongName(numDay);
+        document.getElementById(dateName).innerHTML  = this.weather.getDayDate(numDay);
+        document.getElementById(minMaxTmp).innerHTML = this.weather.getTmpMin(numDay)+"° - "+this.weather.getTmpMax(numDay)+"°";
+    
+        if(document.getElementById(imgWeather).childElementCount == 0){
+            const img = document.createElement('img'); 
+            img.src   = this.weather.getDayIconSmall(numDay);
+            document.getElementById(imgWeather).appendChild(img); 
+        }
     }
 }
 
 
 
 function main(){
-    const app = new App(initMap());
+    const map = new MapGeoloc();
+    const app = new App(map);
+    map.activeListener(app);
     app.activeListener();
-    //app.dataTreatment();
+    
+    
 }
 
-main();
