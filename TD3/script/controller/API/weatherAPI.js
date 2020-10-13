@@ -1,32 +1,23 @@
-let data = null;
-
-
-class RequestAPI {
+export default class WeatherAPI {
     constructor(info, app){
         this.url =  "https://www.prevision-meteo.ch/services/json/" + info;
         this.app = app;
     }
 
-    sendData(){
+    sendData(moreInfo){
         fetch(this.url)
         .then(res => res.json(), res => this.errorMessage())
-        .then(json => this.callBack(json))
+        .then(json => this.callBack(json, moreInfo))
         .catch(err => console.log("HTTP error: "+err)); 
     }
 
-    callBack(data){
-        this.app.dataTreatment(data);
+    callBack(data, moreInfo){
+        this.app.dataTreatment(data, moreInfo);
     }
-
-    validData(){
-        reduiceMap();
-        displayData();
-    }
+    
     errorMessage(){
         alert("Something wrong with http request...");
     }
-
-
 
 
 }

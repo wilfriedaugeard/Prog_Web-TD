@@ -1,12 +1,16 @@
-class Data {
-    constructor(json){
+export default class Data {
+    constructor(json, moreJson){
         this.data = json;
+        this.moreData = moreJson;
     }
 
     createFcst_day(n){return "fcst_day_"+n;}
     createHour(n){return n+"H00";}
 
-    getCityName(){return this.data.city_info.name;}
+    getCityName(){
+        const cityName = this.data.city_info.name;
+        return (cityName != 'NA') ? cityName+' ,'+this.getCountryName() : this.moreData.description;
+    }
     getCountryName(){return this.data.city_info.country;}
     getCityLatitude(){return this.data.city_info.latitude;}
     getCityLongitude(){return this.data.city_info.longitude;}
@@ -51,6 +55,7 @@ class Data {
     getDayIconSmall(day){return this.data[this.createFcst_day(day)].icon;};
 
     getIconSmallByHour(day, hour){return this.data[this.createFcst_day(day)].hourly_data[this.createHour(hour)].ICON;}
+    getTmpByHour(day, hour){return this.data[this.createFcst_day(day)].hourly_data[this.createHour(hour)].TMP2m;}
     
 }
 

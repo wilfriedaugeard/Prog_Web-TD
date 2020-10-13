@@ -1,8 +1,13 @@
-class MapGeoloc {
+import WeatherAPI from '../controller/API/weatherAPI.js';
+import GoogleMapAPI from '../controller/API/googleMapAPI.js';
+
+
+export default class MapGeoloc {
     constructor(){
         this.gpsPoint = {lat: 46.524542279877316, lng: 2.4557739321143313};
-        this.savedMarker = null;
-        
+        this.savedMarker = new Array();
+        this.googleAPI = new GoogleMapAPI(this);
+
         this.map = new google.maps.Map(document.getElementById('map'), {
             zoom: 5, 
             center: this.gpsPoint
@@ -24,38 +29,41 @@ class MapGeoloc {
     }
    
     placeMarker(location) {
-        if(this.savedMarker != null){
-            this.setMapOnAll(null);
-        }
         let marker = new google.maps.Marker({
             position: location,
             map: this.map
         });
-        this.savedMarker = marker;
-        this.savedMarker.setMap(this.map);
+        this.savedMarker.push(marker);
+        marker.setMap(this.map);
     }
 
     sendLngLat(location){
-        const data = "lat="+location.lat()+"lng="+location.lng();
-        const request = new RequestAPI(data, this.app);
-        request.sendData();
+        this.googleAPI.sendRequest(location);
+    }
+
+    sendData(location, moreInfo){
+        const lat = location.lat();
+        const lng = location.lng();
+        const data = "lat="+lat+"lng="+lng;
+        const request = new WeatherAPI(data, this.app);
+        request.sendData(moreInfo);
     }
 
     placeMarkerLatLgn(lat, lng){
-        if(this.savedMarker != null){
-            this.setMapOnAll(null);
-        }
         const myLatLng = {lat: parseFloat(lat), lng: parseFloat(lng)};
         const newMarker = new google.maps.Marker({
             position: myLatLng,
             map: this.map,
         });
-        this.savedMarker = newMarker;
+        this.savedMarker.push(newMarker);
         newMarker.setMap(this.map);
     }
 
-    setMapOnAll(map) {
-        this.savedMarker.setMap(map);
+    cleanMap() {
+        this.savedMarker.forEach(marker => {
+            marker.setMap(null);
+        });
+        this.savedMarker = new Array();
     }
 
     getSavedMarker(){
@@ -64,9 +72,4 @@ class MapGeoloc {
     setSavedMarker(marker){
         this.savedMarker = marker;
     }
-}
-
-// Reduice the map size
-function reduiceMap(){
-    document.getElementById('mapDiv').className = "col-md-6";
 }
