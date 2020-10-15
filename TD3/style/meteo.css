@@ -1,43 +1,52 @@
-body {
-    background-image: url("../assets/cloud.jpg");
-    color: white;
-}  
-
 #appName {
     font-size: 3rem;
 }
 
-header{
-    margin: 1em;
-}
-/* Input */
-#menu{
+#menu {
     margin: 3em auto;
     padding: 0;
 }
+
+#map {
+    height: 100%;
+}
+
+#docLink {
+    margin: 1em 0;
+    padding: 1em;
+    color: white;
+}
+
+#docLink:link {
+    text-decoration: none;
+}
+
+/* City prediction list */
+#selected-locality {
+    background: rgba(0, 0, 0, .03);
+}
+
+
 .predictions {
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     list-style: none;
     margin: 0;
     padding: 7px;
     max-width: 300px;
     display: none;
-  }
-  
-  .prediction {
+}
+
+.prediction {
     position: relative;
     padding: .5em .5em;
     cursor: pointer;
     color: #333;
-  }
-  
-  .prediction:hover {
+}
+
+.prediction:hover {
     background: rgba(0, 0, 0, .06);
-  }
-  
-  #selected-locality {
-    background: rgba(0, 0, 0, .03);
-  }
+}
+
 
 /* Data section */
 #data {
@@ -46,50 +55,58 @@ header{
     color: white;
 }
 
-
-.conditionName, .todayName, .tmp, .small{
+.conditionName,
+.todayName,
+.tmp,
+.small {
     font-size: small;
 }
 
+
 /* Today weather */
-#currentInfo, .weekInfo{
-    box-shadow: 5px 5px 1px rgba(0,0,0,0.1);
+#displayHours {
+    -webkit-box-shadow: 0px 0px 15px 1px rgba(255, 255, 255, 0.7);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 0px 15px 1px rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 1em 2em;
+}
+#currentInfo {
+    background-color: rgba(152, 216, 240, 0.3);
+}
+
+#currentInfo,
+.weekInfo {
+    box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 1em 2em;
 }
 
-#displayHours{
-    -webkit-box-shadow: 0px 0px 15px 1px rgba(255,255,255,0.7);
-    -moz-box-shadow: 0px 0px 15px 1px rgba(255,255,255,0.7);
-    box-shadow: 0px 0px 15px 1px rgba(255,255,255,0.7);
-    border-radius: 10px;
-    padding: 1em 2em;
+.displayHours {
+    margin: 1em;
+    width: 100%;
 }
 
-#currentInfo{
-    background-color: rgba(152,216,240,0.3);
-}
-.hourName{
+.hourName {
     font-size: x-large;
 }
-.todayName{
+
+.todayName {
     font-weight: bold;
 }
 
-.currentDeg{
+.currentDeg {
     font-size: 2.5rem;
     text-align: left;
 }
 
-.conditionName{
+.conditionName {
     font-style: italic;
 }
 
-.imgWeather > img{
+.imgWeather>img {
     max-width: 100%;
 }
-
-
 
 .tmp {
     font-weight: bold;
@@ -97,14 +114,13 @@ header{
     padding: 0;
 }
 
-.cityName{
+.cityName {
     margin: 1em auto;
     padding: 0 .5em;
     text-align: center;
     text-transform: uppercase;
     font-size: large;
 }
-
 
 /* Week weather */
 .card {
@@ -114,11 +130,12 @@ header{
     padding-bottom: 0;
     border-color: white;
 }
-.card-header{
+
+.card-header {
     border-color: white;
 }
 
-.carousselDiv{
+.carousselDiv {
     margin: 0;
     padding: 1em 3em 3em 3em;
 }
@@ -126,176 +143,42 @@ header{
 .carousel-item.active,
 .carousel-item-next,
 .carousel-item-prev {
-  display: block;
-}
-
-
-.displayHours{
-    margin: 1em;
-    width: 100%;
-}
-
-/* Useful */
-.fullWidth{
-    width: 100%;
-}
-
-.bold {
-    font-weight: bold;
-}
-.vertical-center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-.hScroll {
-    overflow-y: scroll;
-    max-height: 700px;
-}
-
-
-.hidden{
-    display: none;
-}
-
-.block{
     display: block;
 }
 
-.minHalfWidth{
-    min-width: 100px;
-}
 
-/* Slide animation */
-.slideRight {
-    animation-name: slideRight;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-}
-@keyframes slideRight {
-    from {
-        margin-left: 100%;
-        width: 300%;
-    }
-    
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
-} 
-
-
-.fadeInRight{
-  animation-name: fadeInRight;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-}
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translate3d(100%, 0, 0);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
-}
-
-.fadeInLeft{
-    animation-name: fadeInLeft;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-  }
-  @keyframes fadeInLeft {
-      from {
-          opacity: 0;
-          transform: translate3d(-100%, 0, 0);
-      }
-      to {
-          opacity: 1;
-          transform: none;
-      }
-  }
-
-.pulse {
-    animation-name: pulse;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-}
-@keyframes pulse {
-    0% {
-        transform: scale3d(1, 1, 1);
-    }
-    50% {
-        transform: scale3d(1.05, 1.05, 1.05);
-    }
-    100% {
-        transform: scale3d(1, 1, 1);
-    }
-}
-.zoomIn {
-    animation-name: zoomIn;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-}
-@keyframes zoomIn {
-    0% {
-        opacity: 0;
-        transform: scale3d(.3, .3, .3);
-    }
-    50% {
-        opacity: 1;
-    }
-}
-  
-
-
-/* Always set the map height explicitly to define the size of the div
- * element that contains the map. */
- #map {
-    height: 100%;
-  }
-
-/* Small screen */
+/* Medium screen */
 @media screen and (max-width: 990px) {
     #appName {
         font-size: 2rem;
     }
-    
-    #menu{
+    #menu {
         margin: 2em auto;
         padding: 0 1em;
     }
     #data {
         margin: 1em auto;
         text-align: center;
-        width: 90%;  
+        width: 90%;
     }
     .itemInfo {
         max-width: 40%;
     }
-    .currentDeg{
+    .currentDeg {
         font-size: 2rem;
     }
-   
 }
 
+/* Small screen */
 @media screen and (max-width: 442px) {
-
-   
-    #menu{
+    #menu {
         margin: 1em auto;
         padding: 0;
     }
     #data {
         width: 100%;
     }
-    h1{
+    h1 {
         font-size: medium;
     }
 }
-
-

@@ -1,5 +1,15 @@
 import CityHtmlBuilder from './cityHtmlBuilder.js';
-export default class City{
+
+/**
+ * City class get weather data and display it.
+ * @class
+ */
+class City{
+    /**
+     * Create an instance of City and create a {@link CityHtmlBuilder} instance to create HTML structure.
+     * @param {int} id - City id. 
+     * @param {JSON} data - {@link Data} instance. 
+     */
     constructor(id, data){
         this.id = id;
         this.data = data;
@@ -7,13 +17,24 @@ export default class City{
     }
 
     // USEFUL
+    /**
+     * Get city latitude.
+     * @returns {String} City latitude.
+     */
     getCityLatitude(){
         return this.data.getCityLatitude();
     }
+    /**
+     * Get city longitude.
+     * @returns {String} City longitude.
+     */
     getCityLongitude(){
         return this.data.getCityLongitude();
     }
 
+    /**
+     * Clean all created objects.
+     */
     clean(){
         this.htmlBuilder.deleteCard();
         delete this.htmlBuilder;
@@ -21,6 +42,9 @@ export default class City{
 
    
     /* DISPLAYING FUNCTIONS */
+    /**
+     * Display weather informations.
+     */
     display(){
         this.htmlBuilder.build();
         this.displayCityName();
@@ -29,10 +53,16 @@ export default class City{
         this.displayTimeSlots();
     }
 
+    /**
+     * Display city name.
+     */
     displayCityName(){
         document.getElementById('cityName'+this.id).innerHTML = this.data.getCityName();
     }
 
+    /**
+     * Display current weather.
+     */
     displayTodayWeather(){
         document.getElementById('todayName'+this.id).innerHTML = this.data.getCurrentDay();
         document.getElementById('hourName'+this.id).innerHTML  = this.data.getCurrentHour();
@@ -49,13 +79,19 @@ export default class City{
         document.getElementById('windDir'+this.id).innerHTML        = this.data.getWindDirection();
     }
 
-
+    /**
+     * Display weather for 5 consecutive days.
+     */
     displayWeekWeather(){
         for(let i = 0; i<5; i++){
             this.displayDayWeather(i);
         }
     }
 
+    /**
+     * Display weather of a specific day.
+     * @param {int} numDay - Day num. 
+     */
     displayDayWeather(numDay){
         const dayName    = "dayName_"+numDay+this.id;
         const dateName   = "dateName_"+numDay+this.id;
@@ -72,6 +108,11 @@ export default class City{
         }
     }
 
+    /**
+     * Display hour weather.
+     * @param {int} h - Hour. 
+     * @param {*} mainDiv - Div to display weather into.
+     */
     displayHourWeather(h, mainDiv){
         const divWeather = this.htmlBuilder.createOneElement('div', 'col', '');
         const img        = this.htmlBuilder.createOneElement('img', 'row', ''); 
@@ -94,7 +135,9 @@ export default class City{
 
     }
 
-
+    /**
+     * Display hour weather two by two.
+     */
     displayTimeSlots(){
         const div = document.getElementById("displayHours"+this.id);
         for (let i=0; i<24; i+=2) {
@@ -104,3 +147,5 @@ export default class City{
     
 
 }
+
+export default City;

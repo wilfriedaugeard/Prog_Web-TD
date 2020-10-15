@@ -1,0 +1,32 @@
+.fullWidth {
+    width: 100%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.minHalfWidth {
+    min-width: 100px;
+}
+
+.hScroll {
+    overflow-y: scroll;
+    max-height: 700px;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

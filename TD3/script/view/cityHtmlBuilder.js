@@ -1,9 +1,20 @@
-export default class CityHtmlBuilder{
+/**
+ * CityHtmlBuilder class create HTML structure to display city data.
+ * @class
+ */
+class CityHtmlBuilder{
+    /**
+     * Create a CityHtmlBuilder instance.
+     * @param {int} id - City id. 
+     */
     constructor(id){
         this.id = id;
         this.card = null;
     }
 
+    /**
+     * Build html structure.
+     */
     build(){
         const mainDiv = document.getElementById("data");
         this.closeAllCollapse();
@@ -13,7 +24,10 @@ export default class CityHtmlBuilder{
 
     /* CARD */
 
-    // Create city card
+    /**
+     * Create card element.
+     * @returns {Object} Created card.
+     */
     createCard(){
         const cardDiv = document.createElement('div');
         cardDiv.className="card pulse";
@@ -22,11 +36,17 @@ export default class CityHtmlBuilder{
         return cardDiv;
     }
 
+    /**
+     * Delete card element.
+     */
     deleteCard(){
         this.card.remove();
     }
     
-    // Create the card header
+    /**
+     * Create header card.
+     * @returns {Object} Created header.
+     */
     createHeaderCard(){
         const cardHeader = this.createOneElement('div', 'card-header', 'heading'+this.id);
         const collapseDiv = this.createOneElement('div', 'row', 'collapseDiv'+this.id);
@@ -49,7 +69,10 @@ export default class CityHtmlBuilder{
     }
 
 
-    // Create the card content
+    /**
+     * Create content card.
+     * @returns {Object} Created content.
+     */
     createContentCard(){
         const cardCentent = this.createOneElement('div', 'collapse show', 'collapse'+this.id);
         cardCentent.setAttribute("aria-labelledby", "heading"+this.id);
@@ -68,7 +91,10 @@ export default class CityHtmlBuilder{
         return cardCentent;
     }
 
-    // Today info
+    /**
+     * Create top left data: global current weather data.
+     * @returns {Object} Created element.
+     */
     createTopLeftInfo(){
         const colMd6        = this.createOneElement('div', 'col-md-6 fadeInLeft', '');
         const rowDiv1       = this.createOneElement('div', 'row', '');
@@ -130,7 +156,10 @@ export default class CityHtmlBuilder{
         return colMd6;
     }
 
-    // Caroussel
+    /**
+     * Create top right data: caroussel with week weather.
+     * @returns {Object} Created element.
+     */
     createTopRightInfo(){
         const colMd6        = this.createOneElement('div', 'col-md-6 fadeInRight', '');
         const carousselDiv  = this.createOneElement('div', 'carousel slide carousselDiv', 'carousselDiv'+this.id);
@@ -180,7 +209,11 @@ export default class CityHtmlBuilder{
         return colMd6;
     }
 
-    // Element of caroussel
+    /**
+     * Create a caroussel 'frame' with data weather.
+     * @param {List} numList - List of day to add. 
+     * @returns {Object} Created element.
+     */
     createOneContentItem(numList){
         const row = this.createOneElement('div', 'row', '');
         numList.forEach(num => {
@@ -209,7 +242,10 @@ export default class CityHtmlBuilder{
         return row;
     }
 
-    // Weather by hour
+    /**
+     * Create bottom data: weather by hour.
+     * @returns {Object} Created element.
+     */
     createBottomInfo(){
         const row = this.createOneElement('div', 'row displayHours zoomIn', 'displayHours'+this.id);
         return row;
@@ -218,7 +254,13 @@ export default class CityHtmlBuilder{
 
     /* USEFUL */
 
-    // Create a DOM element with class and id
+    /**
+     * Create a DOM element.
+     * @param {String} element - The DOM element name. 
+     * @param {Strinf} className - List of classes. 
+     * @param {String} id - element id.
+     * @returns {Object} Created element.
+     */
     createOneElement(element, className, id){
         const el = document.createElement(element);
         (className != '') ? el.className = className: null;
@@ -226,7 +268,9 @@ export default class CityHtmlBuilder{
         return el;
     }
 
-    // Close all collapse
+    /**
+     * Close all collapse.
+     */
     closeAllCollapse(){
         for(let i = 0; i<this.id; i++){
             const collapseDiv = document.getElementById('collapse'+i);
@@ -234,7 +278,6 @@ export default class CityHtmlBuilder{
                 collapseDiv.classList.remove("show");
             }
         }
-    }
-    
-    
+    }  
 }
+export default CityHtmlBuilder;

@@ -1,77 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-        <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="style/meteo.css">
-        <title>Application météo</title>
-       
-       
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT0YsL9GMNRr2mxvbV2ATADymr3AYJK3c&callback=" defer></script>
-        <script src="https://sdk.woosmap.com/localities/localities.js"></script>
-        <script type="module" src="script/main.js" defer></script>
-    </head>
-    <body>
-        <div id="mainPage">
-            <header>
-                <h1 id="appName" class="text-center">
-                    Application M&eacute;t&eacute;o
-                </h1>
-            </header>
-            <div class="container">
-                <div id="menu" class="row">
-                    <div id="group_input" class="col input-group">
-                        <form class="form fullWidth">
-                            <div class="input-group fullWidth">
-                                <!--<input type="text" class="form-control minHalfWidth" placeholder="Ex: Paris" id="inputCity">-->
-                                <input id="inputCity" class="form-control minHalfWidth" placeholder="Ex: Paris" autocomplete="off" role="combobox">
-                                <div class="input-group-append">
-                                    <button class="btn btn-info" id="submitBtn">Afficher <i class="fa fa-cloud"></i></button>  
-                                </div>
-                            </div>
-                        </form>
-                        
-                        <div id="invalidInputNameDiv" class="hidden alert alert-warning alert-dismissible" >
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            Please enter a valid city name or pick the map
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+      <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+
+      <link rel="stylesheet" href="style/global.css">
+      <link rel="stylesheet" href="style/useful.css">
+      <link rel="stylesheet" href="style/meteo.css">
+      <link rel="stylesheet" href="style/animation.css">
+
+      <title>Application météo</title>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT0YsL9GMNRr2mxvbV2ATADymr3AYJK3c&callback=" defer></script>
+      <script src="https://sdk.woosmap.com/localities/localities.js"></script>
+      <script src="script/main.js" type="module"></script>
+   </head>
+   <body>
+      <div id="mainPage">
+         <header>
+            <a href="docs/index.html" id="docLink" class="bold" target="blank">Documentation</a>
+            <h1 id="appName" class="text-center">
+               Application M&eacute;t&eacute;o
+            </h1>
+            <h5 class="text-center">Made by <span class="bold">Exyos</span></h5>
+         </header>
+         <div class="container">
+            <div id="menu" class="row">
+               <div id="group_input" class="col input-group">
+                  <form class="form fullWidth">
+                     <div class="input-group fullWidth">
+                        <input id="inputCity" class="form-control minHalfWidth" placeholder="Ex: Paris" autocomplete="off" role="combobox" aria-expanded="false">
+                        <div class="input-group-append">
+                           <button class="btn btn-info" id="submitBtn">Afficher <i class="fa fa-cloud"></i></button>  
                         </div>
-                        <ul class="predictions">
-                        </ul>
-                        <pre id="selected-locality"></pre>
-                    </div>
-                    <div id="initBtnDiv" class="col-md-3 col-sm">
-                        <button class="btn btn-danger" type="submit" id="initalizeMap">Annuler les recherches <i class="fa fa-times"></i></button>  
-                    </div>
-                </div>
-
-                
-                
-               
-                <div>
-                
-                
-                </div>
-
-
-                <div class="row">
-                    <div id="mapDiv" class="col-md-12">
-                        <div id="map" style="width:100%;height:420px;"></div>
-                    </div> 
-                </div>
-                <div id="data" class="hScroll">
-
-                </div>
+                     </div>
+                  </form>
+                  <div id="invalidInputNameDiv" class="hidden alert alert-warning alert-dismissible" >
+                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                     Please enter a valid city name or pick the map
+                  </div>
+                  <ul class="predictions">
+                  </ul>
+                  <pre id="selected-locality"></pre>
+               </div>
+               <div id="initBtnDiv" class="col-md-3 col-sm">
+                  <button class="btn btn-danger" type="submit" id="initalizeMap">Annuler les recherches <i class="fa fa-times"></i></button>  
+               </div>
             </div>
-        </div>
-    </body>
+            <div>
+            </div>
+            <div class="row">
+               <div id="mapDiv" class="col-md-12">
+                  <div id="map" style="width:100%;height:420px;"></div>
+               </div>
+            </div>
+            <div id="data" class="hScroll">
+            </div>
+         </div>
+      </div>
+   </body>
 </html>
