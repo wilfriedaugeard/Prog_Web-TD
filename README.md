@@ -15,7 +15,7 @@ Make a simple BlackJack game in JavaScript + Bootstrap.
 ![td2](https://github.com/wilfriedaugeard/Prog_Web-TD/blob/master/assets/td2.gif)
 
 ## TD-3
-Make a meteo application in JavaScript using meteo-previsions's API + Bootstrap + Google Map API.
+Make a meteo application in JavaScript using meteo-previsions's API + Bootstrap + Google Map API. Documentation is available.
 
 ![td3](https://github.com/wilfriedaugeard/Prog_Web-TD/blob/master/assets/td3.gif)
 
