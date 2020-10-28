@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<link href="style/login.css" rel="stylesheet">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<title>TD4</title>
+	</head>
+	<body>
+		<div class="wrapper fadeInDown">
+			<div>
+				<h1 id="titleLogConnexion">Programmation Web - TD4</h1>
+			</div>
+			<div id="formContent">
+				<div>
+					<h2>Connexion</h2>
+				</div>
+			  <!-- Login Form -->
+			  <form action="LoginServlet" method="POST">
+				<input type="text" class="fadeIn second" placeholder="login" name="username">
+				<input type="password" class="fadeIn third" name="password" placeholder="password">
+				<input type="submit" class="fadeIn fourth" value="Log In">
+			  </form>
+			  <div id="formFooter">
+				<a class="underlineHover" href="registerForm.html">Create an account</a>
+			  </div>
+		  
+			</div>
+		  </div>
+	</body>
+</html>
